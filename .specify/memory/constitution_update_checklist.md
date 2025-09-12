@@ -1,85 +1,97 @@
-# Constitution Update Checklist
+# Checklist de Atualização da Constituição
 
-When amending the constitution (`/memory/constitution.md`), ensure all dependent documents are updated to maintain consistency.
+Ao emendar a constituição (`/memory/constitution.md`), garanta que todos os documentos dependentes estejam atualizados para manter a consistência.
 
-## Templates to Update
+## Templates a Atualizar
 
-### When adding/modifying ANY article:
-- [ ] `/templates/plan-template.md` - Update Constitution Check section
-- [ ] `/templates/spec-template.md` - Update if requirements/scope affected
-- [ ] `/templates/tasks-template.md` - Update if new task types needed
-- [ ] `/.claude/commands/plan.md` - Update if planning process changes
-- [ ] `/.claude/commands/tasks.md` - Update if task generation affected
-- [ ] `/CLAUDE.md` - Update runtime development guidelines
+### Ao adicionar/modificar QUALQUER artigo:
 
-### Article-specific updates:
+- [ ] `/templates/plan-template.md` - Atualizar a seção de Verificação da Constituição
+- [ ] `/templates/spec-template.md` - Atualizar se requisitos/escopo forem afetados
+- [ ] `/templates/tasks-template.md` - Atualizar se novos tipos de tarefas forem necessários
+- [ ] `/.claude/commands/plan.md` - Atualizar se o processo de planejamento mudar
+- [ ] `/.claude/commands/tasks.md` - Atualizar se a geração de tarefas for afetada
+- [ ] `/CLAUDE.md` - Atualizar diretrizes de desenvolvimento em tempo de execução
 
-#### Article I (Library-First):
-- [ ] Ensure templates emphasize library creation
-- [ ] Update CLI command examples
-- [ ] Add llms.txt documentation requirements
+### Atualizações específicas por artigo:
 
-#### Article II (CLI Interface):
-- [ ] Update CLI flag requirements in templates
-- [ ] Add text I/O protocol reminders
+#### Artigo I (Biblioteca-Primeiro):
 
-#### Article III (Test-First):
-- [ ] Update test order in all templates
-- [ ] Emphasize TDD requirements
-- [ ] Add test approval gates
+- [ ] Garantir que os templates enfatizam a criação de bibliotecas
+- [ ] Atualizar exemplos de comandos CLI
+- [ ] Adicionar requisitos de documentação llms.txt
 
-#### Article IV (Integration Testing):
-- [ ] List integration test triggers
-- [ ] Update test type priorities
-- [ ] Add real dependency requirements
+#### Artigo II (Interface CLI):
 
-#### Article V (Observability):
-- [ ] Add logging requirements to templates
-- [ ] Include multi-tier log streaming
-- [ ] Update performance monitoring sections
+- [ ] Atualizar requisitos de flags de CLI nos templates
+- [ ] Adicionar lembretes do protocolo de E/S de texto
 
-#### Article VI (Versioning):
-- [ ] Add version increment reminders
-- [ ] Include breaking change procedures
-- [ ] Update migration requirements
+#### Artigo III (Teste-Primeiro):
 
-#### Article VII (Simplicity):
-- [ ] Update project count limits
-- [ ] Add pattern prohibition examples
-- [ ] Include YAGNI reminders
+- [ ] Atualizar a ordem de testes em todos os templates
+- [ ] Enfatizar os requisitos de TDD
+- [ ] Adicionar gates de aprovação de testes
 
-## Validation Steps
+#### Artigo IV (Testes de Integração):
 
-1. **Before committing constitution changes:**
-   - [ ] All templates reference new requirements
-   - [ ] Examples updated to match new rules
-   - [ ] No contradictions between documents
+- [ ] Listar gatilhos de testes de integração
+- [ ] Atualizar prioridades de tipos de teste
+- [ ] Adicionar requisitos de dependências reais
 
-2. **After updating templates:**
-   - [ ] Run through a sample implementation plan
-   - [ ] Verify all constitution requirements addressed
-   - [ ] Check that templates are self-contained (readable without constitution)
+#### Artigo V (Observabilidade):
 
-3. **Version tracking:**
-   - [ ] Update constitution version number
-   - [ ] Note version in template footers
-   - [ ] Add amendment to constitution history
+- [ ] Adicionar requisitos de logging aos templates
+- [ ] Incluir streaming de logs em múltiplos níveis
+- [ ] Atualizar seções de monitoramento de performance
 
-## Common Misses
+#### Artigo VI (Versionamento):
 
-Watch for these often-forgotten updates:
-- Command documentation (`/commands/*.md`)
-- Checklist items in templates
-- Example code/commands
-- Domain-specific variations (web vs mobile vs CLI)
-- Cross-references between documents
+- [ ] Adicionar lembretes de incremento de versão
+- [ ] Incluir procedimentos para breaking changes
+- [ ] Atualizar requisitos de migração
 
-## Template Sync Status
+#### Artigo VII (Simplicidade):
 
-Last sync check: 2025-07-16
-- Constitution version: 2.1.1
-- Templates aligned: ❌ (missing versioning, observability details)
+- [ ] Atualizar limites de quantidade de projetos
+- [ ] Adicionar exemplos de padrões proibidos
+- [ ] Incluir lembretes de YAGNI
+
+## Etapas de Validação
+
+1. **Antes de comitar mudanças na constituição:**
+
+   - [ ] Todos os templates referenciam os novos requisitos
+   - [ ] Exemplos atualizados para corresponder às novas regras
+   - [ ] Sem contradições entre documentos
+
+2. **Após atualizar os templates:**
+
+   - [ ] Percorrer um plano de implementação de exemplo
+   - [ ] Verificar que todos os requisitos da constituição foram atendidos
+   - [ ] Checar que os templates são autocontidos (legíveis sem a constituição)
+
+3. **Rastreamento de versão:**
+   - [ ] Atualizar o número da versão da constituição
+   - [ ] Anotar a versão nos rodapés dos templates
+   - [ ] Adicionar emenda ao histórico da constituição
+
+## Itens Comumente Esquecidos
+
+Fique atento a estas atualizações frequentemente esquecidas:
+
+- Documentação de comandos (`/commands/*.md`)
+- Itens de checklist nos templates
+- Exemplos de código/comandos
+- Variações específicas de domínio (web vs mobile vs CLI)
+- Referências cruzadas entre documentos
+
+## Status de Sincronização dos Templates
+
+Última verificação de sync: 2025-07-16
+
+- Versão da constituição: 2.1.1
+- Templates alinhados: ❌ (faltando detalhes de versionamento e observabilidade)
 
 ---
 
-*This checklist ensures the constitution's principles are consistently applied across all project documentation.*
+_Este checklist garante que os princípios da constituição sejam aplicados de forma consistente em toda a documentação do projeto._

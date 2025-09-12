@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# (Moved to scripts/bash/) Common functions and variables for all scripts
+# (Movido para scripts/bash/) Funções e variáveis comuns para todos os scripts
 
 get_repo_root() { git rev-parse --show-toplevel; }
 get_current_branch() { git rev-parse --abbrev-ref HEAD; }
@@ -7,8 +7,8 @@ get_current_branch() { git rev-parse --abbrev-ref HEAD; }
 check_feature_branch() {
     local branch="$1"
     if [[ ! "$branch" =~ ^[0-9]{3}- ]]; then
-        echo "ERROR: Not on a feature branch. Current branch: $branch" >&2
-        echo "Feature branches should be named like: 001-feature-name" >&2
+        echo "ERRO: Não está em uma branch de feature. Branch atual: $branch" >&2
+        echo "Branches de feature devem ser nomeadas assim: 001-nome-da-feature" >&2
         return 1
     fi; return 0
 }

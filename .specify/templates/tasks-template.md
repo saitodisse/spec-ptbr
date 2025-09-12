@@ -1,127 +1,140 @@
-# Tasks: [FEATURE NAME]
+# Tarefas: [FEATURE NAME]
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
+**Entrada**: Documentos de design em `/specs/[###-feature-name]/`
+**Pré-requisitos**: plan.md (obrigatório), research.md, data-model.md, contracts/
 
-## Execution Flow (main)
+## Fluxo de Execução (principal)
+
 ```
-1. Load plan.md from feature directory
-   → If not found: ERROR "No implementation plan found"
-   → Extract: tech stack, libraries, structure
-2. Load optional design documents:
-   → data-model.md: Extract entities → model tasks
-   → contracts/: Each file → contract test task
-   → research.md: Extract decisions → setup tasks
-3. Generate tasks by category:
-   → Setup: project init, dependencies, linting
-   → Tests: contract tests, integration tests
-   → Core: models, services, CLI commands
-   → Integration: DB, middleware, logging
-   → Polish: unit tests, performance, docs
-4. Apply task rules:
-   → Different files = mark [P] for parallel
-   → Same file = sequential (no [P])
-   → Tests before implementation (TDD)
-5. Number tasks sequentially (T001, T002...)
-6. Generate dependency graph
-7. Create parallel execution examples
-8. Validate task completeness:
-   → All contracts have tests?
-   → All entities have models?
-   → All endpoints implemented?
-9. Return: SUCCESS (tasks ready for execution)
-```
-
-## Format: `[ID] [P?] Description`
-- **[P]**: Can run in parallel (different files, no dependencies)
-- Include exact file paths in descriptions
-
-## Path Conventions
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
-
-## Phase 3.1: Setup
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
-
-## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
-**CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test POST /api/users in tests/contract/test_users_post.py
-- [ ] T005 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
-- [ ] T006 [P] Integration test user registration in tests/integration/test_registration.py
-- [ ] T007 [P] Integration test auth flow in tests/integration/test_auth.py
-
-## Phase 3.3: Core Implementation (ONLY after tests are failing)
-- [ ] T008 [P] User model in src/models/user.py
-- [ ] T009 [P] UserService CRUD in src/services/user_service.py
-- [ ] T010 [P] CLI --create-user in src/cli/user_commands.py
-- [ ] T011 POST /api/users endpoint
-- [ ] T012 GET /api/users/{id} endpoint
-- [ ] T013 Input validation
-- [ ] T014 Error handling and logging
-
-## Phase 3.4: Integration
-- [ ] T015 Connect UserService to DB
-- [ ] T016 Auth middleware
-- [ ] T017 Request/response logging
-- [ ] T018 CORS and security headers
-
-## Phase 3.5: Polish
-- [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
-
-## Dependencies
-- Tests (T004-T007) before implementation (T008-T014)
-- T008 blocks T009, T015
-- T016 blocks T018
-- Implementation before polish (T019-T023)
-
-## Parallel Example
-```
-# Launch T004-T007 together:
-Task: "Contract test POST /api/users in tests/contract/test_users_post.py"
-Task: "Contract test GET /api/users/{id} in tests/contract/test_users_get.py"
-Task: "Integration test registration in tests/integration/test_registration.py"
-Task: "Integration test auth in tests/integration/test_auth.py"
+1. Carregar plan.md do diretório da feature
+   → Se não encontrar: ERRO "Nenhum plano de implementação encontrado"
+   → Extrair: stack, bibliotecas, estrutura
+2. Carregar documentos de design opcionais:
+   → data-model.md: Extrair entidades → tarefas de modelo
+   → contracts/: Cada arquivo → tarefa de teste de contrato
+   → research.md: Extrair decisões → tarefas de setup
+3. Gerar tarefas por categoria:
+   → Setup: init do projeto, dependências, linting
+   → Testes: testes de contrato, testes de integração
+   → Core: modelos, serviços, comandos CLI
+   → Integração: DB, middleware, logging
+   → Polimento: testes unitários, performance, docs
+4. Aplicar regras de tarefas:
+   → Arquivos diferentes = marcar [P] para paralelo
+   → Mesmo arquivo = sequencial (sem [P])
+   → Testes antes da implementação (TDD)
+5. Numerar tarefas sequencialmente (T001, T002...)
+6. Gerar grafo de dependências
+7. Criar exemplos de execução paralela
+8. Validar completude das tarefas:
+   → Todos os contratos têm testes?
+   → Todas as entidades têm modelos?
+   → Todos os endpoints implementados?
+9. Retorno: SUCESSO (tarefas prontas para execução)
 ```
 
-## Notes
-- [P] tasks = different files, no dependencies
-- Verify tests fail before implementing
-- Commit after each task
-- Avoid: vague tasks, same file conflicts
+## Formato: `[ID] [P?] Descrição`
 
-## Task Generation Rules
-*Applied during main() execution*
+- **[P]**: Pode rodar em paralelo (arquivos diferentes, sem dependências)
+- Incluir caminhos exatos de arquivo nas descrições
 
-1. **From Contracts**:
-   - Each contract file → contract test task [P]
-   - Each endpoint → implementation task
-   
-2. **From Data Model**:
-   - Each entity → model creation task [P]
-   - Relationships → service layer tasks
-   
-3. **From User Stories**:
-   - Each story → integration test [P]
-   - Quickstart scenarios → validation tasks
+## Convenções de Caminho
 
-4. **Ordering**:
-   - Setup → Tests → Models → Services → Endpoints → Polish
-   - Dependencies block parallel execution
+- **Projeto único**: `src/`, `tests/` na raiz do repositório
+- **App web**: `backend/src/`, `frontend/src/`
+- **Mobile**: `api/src/`, `ios/src/` ou `android/src/`
+- Os caminhos abaixo assumem projeto único — ajuste conforme a estrutura do plan.md
 
-## Validation Checklist
-*GATE: Checked by main() before returning*
+## Fase 3.1: Setup
 
-- [ ] All contracts have corresponding tests
-- [ ] All entities have model tasks
-- [ ] All tests come before implementation
-- [ ] Parallel tasks truly independent
-- [ ] Each task specifies exact file path
-- [ ] No task modifies same file as another [P] task
+- [ ] T001 Criar estrutura do projeto conforme o plano
+- [ ] T002 Inicializar projeto [linguagem] com dependências do [framework]
+- [ ] T003 [P] Configurar ferramentas de linting e formatação
+
+## Fase 3.2: Testes Primeiro (TDD) ⚠️ DEVE CONCLUIR ANTES da 3.3
+
+**CRÍTICO: Esses testes DEVEM ser escritos e DEVEM FALHAR antes de QUALQUER implementação**
+
+- [ ] T004 [P] Teste de contrato POST /api/users em tests/contract/test_users_post.py
+- [ ] T005 [P] Teste de contrato GET /api/users/{id} em tests/contract/test_users_get.py
+- [ ] T006 [P] Teste de integração cadastro de usuário em tests/integration/test_registration.py
+- [ ] T007 [P] Teste de integração fluxo de auth em tests/integration/test_auth.py
+
+## Fase 3.3: Implementação Core (APENAS após os testes falharem)
+
+- [ ] T008 [P] Modelo User em src/models/user.py
+- [ ] T009 [P] CRUD do UserService em src/services/user_service.py
+- [ ] T010 [P] CLI --create-user em src/cli/user_commands.py
+- [ ] T011 Endpoint POST /api/users
+- [ ] T012 Endpoint GET /api/users/{id}
+- [ ] T013 Validação de entrada
+- [ ] T014 Tratamento de erros e logging
+
+## Fase 3.4: Integração
+
+- [ ] T015 Conectar UserService ao DB
+- [ ] T016 Middleware de auth
+- [ ] T017 Logging de requisição/resposta
+- [ ] T018 CORS e headers de segurança
+
+## Fase 3.5: Polimento
+
+- [ ] T019 [P] Testes unitários de validação em tests/unit/test_validation.py
+- [ ] T020 Testes de performance (<200ms)
+- [ ] T021 [P] Atualizar docs/api.md
+- [ ] T022 Remover duplicação
+- [ ] T023 Rodar manual-testing.md
+
+## Dependências
+
+- Testes (T004-T007) antes da implementação (T008-T014)
+- T008 bloqueia T009, T015
+- T016 bloqueia T018
+- Implementação antes do polimento (T019-T023)
+
+## Exemplo de Paralelismo
+
+```
+# Rodar T004-T007 juntos:
+Task: "Teste de contrato POST /api/users em tests/contract/test_users_post.py"
+Task: "Teste de contrato GET /api/users/{id} em tests/contract/test_users_get.py"
+Task: "Teste de integração cadastro em tests/integration/test_registration.py"
+Task: "Teste de integração auth em tests/integration/test_auth.py"
+```
+
+## Notas
+
+- Tarefas [P] = arquivos diferentes, sem dependências
+- Verifique que os testes falham antes de implementar
+- Faça commit após cada tarefa
+- Evite: tarefas vagas, conflitos no mesmo arquivo
+
+## Regras de Geração de Tarefas
+
+_Aplicadas durante a execução do main()_
+
+1. **A partir dos Contratos**:
+   - Cada arquivo de contrato → tarefa de teste de contrato [P]
+   - Cada endpoint → tarefa de implementação
+2. **A partir do Data Model**:
+   - Cada entidade → tarefa de criação de modelo [P]
+   - Relacionamentos → tarefas na camada de serviços
+3. **A partir das User Stories**:
+
+   - Cada story → teste de integração [P]
+   - Cenários de quickstart → tarefas de validação
+
+4. **Ordenação**:
+   - Setup → Testes → Modelos → Serviços → Endpoints → Polimento
+   - Dependências bloqueiam execução paralela
+
+## Checklist de Validação
+
+_GATE: Checado por main() antes de retornar_
+
+- [ ] Todos os contratos têm testes correspondentes
+- [ ] Todas as entidades têm tarefas de modelo
+- [ ] Todos os testes vêm antes da implementação
+- [ ] Tarefas paralelas realmente independentes
+- [ ] Cada tarefa especifica o caminho exato do arquivo
+- [ ] Nenhuma tarefa modifica o mesmo arquivo que outra tarefa [P]

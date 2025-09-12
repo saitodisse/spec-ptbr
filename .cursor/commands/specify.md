@@ -1,12 +1,10 @@
----
-description: Create or update the feature specification from a natural language feature description.
----
+## description: Criar ou atualizar a especificação da feature a partir de uma descrição em linguagem natural.
 
-Given the feature description provided as an argument, do this:
+Dada a descrição da feature fornecida como argumento, faça o seguinte:
 
-1. Run the script `.specify/scripts/bash/create-new-feature.sh --json "$ARGUMENTS"` from repo root and parse its JSON output for BRANCH_NAME and SPEC_FILE. All file paths must be absolute.
-2. Load `.specify/templates/spec-template.md` to understand required sections.
-3. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) while preserving section order and headings.
-4. Report completion with branch name, spec file path, and readiness for the next phase.
+1. Execute o script `.specify/scripts/bash/create-new-feature.sh --json "$ARGUMENTS"` a partir da raiz do repositório e analise a saída JSON para obter BRANCH_NAME e SPEC_FILE. Todos os caminhos de arquivos devem ser absolutos.
+2. Carregue `.specify/templates/spec-template.md` para entender as seções obrigatórias.
+3. Escreva a especificação em SPEC_FILE usando a estrutura do template, substituindo os placeholders por detalhes concretos derivados da descrição da feature (argumentos), preservando a ordem das seções e os títulos.
+4. Relate a conclusão com o nome da branch, o caminho do arquivo de especificação e a prontidão para a próxima fase.
 
-Note: The script creates and checks out the new branch and initializes the spec file before writing.
+Observação: O script cria e faz checkout da nova branch e inicializa o arquivo de especificação antes de escrever.

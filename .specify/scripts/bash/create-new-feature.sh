@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# (Moved to scripts/bash/) Create a new feature with branch, directory structure, and template
+# (Movido para scripts/bash/) Cria uma nova feature com branch, estrutura de diretórios e template
 set -e
 
 JSON_MODE=false
@@ -7,14 +7,14 @@ ARGS=()
 for arg in "$@"; do
     case "$arg" in
         --json) JSON_MODE=true ;;
-        --help|-h) echo "Usage: $0 [--json] <feature_description>"; exit 0 ;;
+        --help|-h) echo "Uso: $0 [--json] <descricao_da_feature>"; exit 0 ;;
         *) ARGS+=("$arg") ;;
     esac
 done
 
 FEATURE_DESCRIPTION="${ARGS[*]}"
 if [ -z "$FEATURE_DESCRIPTION" ]; then
-    echo "Usage: $0 [--json] <feature_description>" >&2
+    echo "Uso: $0 [--json] <descricao_da_feature>" >&2
     exit 1
 fi
 
@@ -52,7 +52,7 @@ if [ -f "$TEMPLATE" ]; then cp "$TEMPLATE" "$SPEC_FILE"; else touch "$SPEC_FILE"
 if $JSON_MODE; then
     printf '{"BRANCH_NAME":"%s","SPEC_FILE":"%s","FEATURE_NUM":"%s"}\n' "$BRANCH_NAME" "$SPEC_FILE" "$FEATURE_NUM"
 else
-    echo "BRANCH_NAME: $BRANCH_NAME"
-    echo "SPEC_FILE: $SPEC_FILE"
-    echo "FEATURE_NUM: $FEATURE_NUM"
+    echo "NOME_DA_BRANCH: $BRANCH_NAME"
+    echo "ARQUIVO_DA_SPEC: $SPEC_FILE"
+    echo "NUMERO_DA_FEATURE: $FEATURE_NUM"
 fi

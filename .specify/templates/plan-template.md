@@ -1,97 +1,108 @@
-# Implementation Plan: [FEATURE]
+# Plano de Implementação: [FEATURE]
 
+**Branch**: `[###-feature-name]` | **Data**: [DATE] | **Spec**: [link]
+**Entrada**: Especificação da feature em `/specs/[###-feature-name]/spec.md`
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+## Fluxo de Execução (escopo do comando /plan)
 
-## Execution Flow (/plan command scope)
 ```
-1. Load feature spec from Input path
-   → If not found: ERROR "No feature spec at {path}"
-2. Fill Technical Context (scan for NEEDS CLARIFICATION)
-   → Detect Project Type from context (web=frontend+backend, mobile=app+api)
-   → Set Structure Decision based on project type
-3. Evaluate Constitution Check section below
-   → If violations exist: Document in Complexity Tracking
-   → If no justification possible: ERROR "Simplify approach first"
-   → Update Progress Tracking: Initial Constitution Check
-4. Execute Phase 0 → research.md
-   → If NEEDS CLARIFICATION remain: ERROR "Resolve unknowns"
-5. Execute Phase 1 → contracts, data-model.md, quickstart.md, agent-specific template file (e.g., `CLAUDE.md` for Claude Code, `.github/copilot-instructions.md` for GitHub Copilot, or `GEMINI.md` for Gemini CLI).
-6. Re-evaluate Constitution Check section
-   → If new violations: Refactor design, return to Phase 1
-   → Update Progress Tracking: Post-Design Constitution Check
-7. Plan Phase 2 → Describe task generation approach (DO NOT create tasks.md)
-8. STOP - Ready for /tasks command
+1. Carregar a spec da feature a partir do caminho de Entrada
+   → Se não encontrar: ERRO "Nenhuma spec de feature em {path}"
+2. Preencher o Contexto Técnico (buscar por NEEDS CLARIFICATION)
+   → Detectar o Tipo de Projeto a partir do contexto (web=frontend+backend, mobile=app+api)
+   → Definir a Decisão de Estrutura com base no tipo de projeto
+3. Avaliar a seção de Verificação da Constituição abaixo
+   → Se houver violações: Documentar em Rastreamento de Complexidade
+   → Se não houver justificativa possível: ERRO "Simplifique a abordagem primeiro"
+   → Atualizar o Rastreamento de Progresso: Verificação Inicial da Constituição
+4. Executar a Fase 0 → research.md
+   → Se permanecerem NEEDS CLARIFICATION: ERRO "Resolver incertezas"
+5. Executar a Fase 1 → contracts, data-model.md, quickstart.md, arquivo de template específico do agente (ex.: `CLAUDE.md` para Claude Code, `.github/copilot-instructions.md` para GitHub Copilot, ou `GEMINI.md` para Gemini CLI).
+6. Reavaliar a seção de Verificação da Constituição
+   → Se surgirem novas violações: Refatorar o design, retornar à Fase 1
+   → Atualizar o Rastreamento de Progresso: Verificação Pós-Design
+7. Planejar a Fase 2 → Descrever a abordagem de geração de tarefas (NÃO criar tasks.md)
+8. PARAR - Pronto para o comando /tasks
 ```
 
-**IMPORTANT**: The /plan command STOPS at step 7. Phases 2-4 are executed by other commands:
-- Phase 2: /tasks command creates tasks.md
-- Phase 3-4: Implementation execution (manual or via tools)
+**IMPORTANTE**: O comando /plan PARA no passo 7. As Fases 2-4 são executadas por outros comandos:
 
-## Summary
-[Extract from feature spec: primary requirement + technical approach from research]
+- Fase 2: comando /tasks cria o tasks.md
+- Fases 3-4: Execução da implementação (manual ou via ferramentas)
 
-## Technical Context
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+## Resumo
 
-## Constitution Check
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+[Extrair da spec da feature: requisito principal + abordagem técnica da pesquisa]
 
-**Simplicity**:
-- Projects: [#] (max 3 - e.g., api, cli, tests)
-- Using framework directly? (no wrapper classes)
-- Single data model? (no DTOs unless serialization differs)
-- Avoiding patterns? (no Repository/UoW without proven need)
+## Contexto Técnico
 
-**Architecture**:
-- EVERY feature as library? (no direct app code)
-- Libraries listed: [name + purpose for each]
-- CLI per library: [commands with --help/--version/--format]
-- Library docs: llms.txt format planned?
+**Linguagem/Versão**: [ex.: Python 3.11, Swift 5.9, Rust 1.75 ou NEEDS CLARIFICATION]  
+**Dependências Primárias**: [ex.: FastAPI, UIKit, LLVM ou NEEDS CLARIFICATION]  
+**Armazenamento**: [se aplicável, ex.: PostgreSQL, CoreData, arquivos ou N/A]  
+**Testes**: [ex.: pytest, XCTest, cargo test ou NEEDS CLARIFICATION]  
+**Plataforma Alvo**: [ex.: Servidor Linux, iOS 15+, WASM ou NEEDS CLARIFICATION]
+**Tipo de Projeto**: [single/web/mobile - determina a estrutura do código]  
+**Metas de Performance**: [específicas do domínio, ex.: 1000 req/s, 10k linhas/seg, 60 fps ou NEEDS CLARIFICATION]  
+**Restrições**: [específicas do domínio, ex.: <200ms p95, <100MB memória, offline-capable ou NEEDS CLARIFICATION]  
+**Escala/Escopo**: [específicas do domínio, ex.: 10k usuários, 1M LOC, 50 telas ou NEEDS CLARIFICATION]
 
-**Testing (NON-NEGOTIABLE)**:
-- RED-GREEN-Refactor cycle enforced? (test MUST fail first)
-- Git commits show tests before implementation?
-- Order: Contract→Integration→E2E→Unit strictly followed?
-- Real dependencies used? (actual DBs, not mocks)
-- Integration tests for: new libraries, contract changes, shared schemas?
-- FORBIDDEN: Implementation before test, skipping RED phase
+## Verificação da Constituição
 
-**Observability**:
-- Structured logging included?
-- Frontend logs → backend? (unified stream)
-- Error context sufficient?
+_GATE: Deve passar antes da pesquisa da Fase 0. Revalidar após o design da Fase 1._
 
-**Versioning**:
-- Version number assigned? (MAJOR.MINOR.BUILD)
-- BUILD increments on every change?
-- Breaking changes handled? (parallel tests, migration plan)
+**Simplicidade**:
 
-## Project Structure
+- Projetos: [#] (máx. 3 - ex.: api, cli, tests)
+- Usando o framework diretamente? (sem classes wrapper)
+- Modelo de dados único? (sem DTOs a menos que a serialização difira)
+- Evitando padrões? (sem Repository/UoW sem necessidade comprovada)
 
-### Documentation (this feature)
+**Arquitetura**:
+
+- TODA feature como biblioteca? (sem código direto de app)
+- Bibliotecas listadas: [nome + propósito de cada]
+- CLI por biblioteca: [comandos com --help/--version/--format]
+- Documentação da biblioteca: formato llms.txt previsto?
+
+**Testes (INNEGOCIÁVEL)**:
+
+- Ciclo RED-GREEN-Refactor aplicado? (teste DEVE falhar primeiro)
+- Commits mostram testes antes da implementação?
+- Ordem: Contract→Integration→E2E→Unit seguida estritamente?
+- Dependências reais usadas? (DBs reais, sem mocks)
+- Testes de integração para: novas bibliotecas, mudanças de contrato, esquemas compartilhados?
+- PROIBIDO: Implementar antes do teste, pular a fase RED
+
+**Observabilidade**:
+
+- Logging estruturado incluído?
+- Logs do frontend → backend? (fluxo unificado)
+- Contexto de erro suficiente?
+
+**Versionamento**:
+
+- Número de versão atribuído? (MAJOR.MINOR.BUILD)
+- BUILD incrementa a cada mudança?
+- Breaking changes tratadas? (testes paralelos, plano de migração)
+
+## Estrutura do Projeto
+
+### Documentação (esta feature)
+
 ```
 specs/[###-feature]/
-├── plan.md              # This file (/plan command output)
-├── research.md          # Phase 0 output (/plan command)
-├── data-model.md        # Phase 1 output (/plan command)
-├── quickstart.md        # Phase 1 output (/plan command)
-├── contracts/           # Phase 1 output (/plan command)
-└── tasks.md             # Phase 2 output (/tasks command - NOT created by /plan)
+├── plan.md              # Este arquivo (saída do comando /plan)
+├── research.md          # Saída da Fase 0 (comando /plan)
+├── data-model.md        # Saída da Fase 1 (comando /plan)
+├── quickstart.md        # Saída da Fase 1 (comando /plan)
+├── contracts/           # Saída da Fase 1 (comando /plan)
+└── tasks.md             # Saída da Fase 2 (comando /tasks - NÃO criado por /plan)
 ```
 
-### Source Code (repository root)
+### Código-Fonte (raiz do repositório)
+
 ```
-# Option 1: Single project (DEFAULT)
+# Opção 1: Projeto único (DEFAULT)
 src/
 ├── models/
 ├── services/
@@ -103,7 +114,7 @@ tests/
 ├── integration/
 └── unit/
 
-# Option 2: Web application (when "frontend" + "backend" detected)
+# Opção 2: Aplicação web (quando "frontend" + "backend" detectados)
 backend/
 ├── src/
 │   ├── models/
@@ -118,7 +129,7 @@ frontend/
 │   └── services/
 └── tests/
 
-# Option 3: Mobile + API (when "iOS/Android" detected)
+# Opção 3: Mobile + API (quando "iOS/Android" detectado)
 api/
 └── [same as backend above]
 
@@ -126,113 +137,129 @@ ios/ or android/
 └── [platform-specific structure]
 ```
 
-**Structure Decision**: [DEFAULT to Option 1 unless Technical Context indicates web/mobile app]
+**Decisão de Estrutura**: [PADRÃO para Opção 1 a menos que o Contexto Técnico indique app web/mobile]
 
-## Phase 0: Outline & Research
-1. **Extract unknowns from Technical Context** above:
-   - For each NEEDS CLARIFICATION → research task
-   - For each dependency → best practices task
-   - For each integration → patterns task
+## Fase 0: Esboço & Pesquisa
 
-2. **Generate and dispatch research agents**:
+1. **Extrair incertezas do Contexto Técnico** acima:
+
+   - Para cada NEEDS CLARIFICATION → tarefa de pesquisa
+   - Para cada dependência → tarefa de boas práticas
+   - Para cada integração → tarefa de padrões
+
+2. **Gerar e despachar agentes de pesquisa**:
+
    ```
-   For each unknown in Technical Context:
-     Task: "Research {unknown} for {feature context}"
-   For each technology choice:
-     Task: "Find best practices for {tech} in {domain}"
+   Para cada incerteza no Contexto Técnico:
+     Tarefa: "Pesquisar {incerteza} para {contexto da feature}"
+   Para cada escolha de tecnologia:
+     Tarefa: "Encontrar boas práticas para {tecnologia} em {domínio}"
    ```
 
-3. **Consolidate findings** in `research.md` using format:
-   - Decision: [what was chosen]
-   - Rationale: [why chosen]
-   - Alternatives considered: [what else evaluated]
+3. **Consolidar achados** em `research.md` usando o formato:
+   - Decisão: [o que foi escolhido]
+   - Justificativa: [por que escolhido]
+   - Alternativas consideradas: [o que mais foi avaliado]
 
-**Output**: research.md with all NEEDS CLARIFICATION resolved
+**Saída**: research.md com todas as NEEDS CLARIFICATION resolvidas
 
-## Phase 1: Design & Contracts
-*Prerequisites: research.md complete*
+## Fase 1: Design & Contratos
 
-1. **Extract entities from feature spec** → `data-model.md`:
-   - Entity name, fields, relationships
-   - Validation rules from requirements
-   - State transitions if applicable
+_Pré-requisito: research.md concluído_
 
-2. **Generate API contracts** from functional requirements:
-   - For each user action → endpoint
-   - Use standard REST/GraphQL patterns
-   - Output OpenAPI/GraphQL schema to `/contracts/`
+1. **Extrair entidades da spec da feature** → `data-model.md`:
 
-3. **Generate contract tests** from contracts:
-   - One test file per endpoint
-   - Assert request/response schemas
-   - Tests must fail (no implementation yet)
+   - Nome da entidade, campos, relacionamentos
+   - Regras de validação a partir dos requisitos
+   - Transições de estado se aplicável
 
-4. **Extract test scenarios** from user stories:
-   - Each story → integration test scenario
-   - Quickstart test = story validation steps
+2. **Gerar contratos de API** a partir dos requisitos funcionais:
 
-5. **Update agent file incrementally** (O(1) operation):
-   - Run `/scripts/bash/update-agent-context.sh cursor` for your AI assistant
-   - If exists: Add only NEW tech from current plan
-   - Preserve manual additions between markers
-   - Update recent changes (keep last 3)
-   - Keep under 150 lines for token efficiency
-   - Output to repository root
+   - Para cada ação do usuário → endpoint
+   - Usar padrões REST/GraphQL
+   - Salvar o schema OpenAPI/GraphQL em `/contracts/`
 
-**Output**: data-model.md, /contracts/*, failing tests, quickstart.md, agent-specific file
+3. **Gerar testes de contrato** a partir dos contratos:
 
-## Phase 2: Task Planning Approach
-*This section describes what the /tasks command will do - DO NOT execute during /plan*
+   - Um arquivo de teste por endpoint
+   - Validar schemas de requisição/resposta
+   - Testes devem falhar (sem implementação ainda)
 
-**Task Generation Strategy**:
-- Load `/templates/tasks-template.md` as base
-- Generate tasks from Phase 1 design docs (contracts, data model, quickstart)
-- Each contract → contract test task [P]
-- Each entity → model creation task [P] 
-- Each user story → integration test task
-- Implementation tasks to make tests pass
+4. **Extrair cenários de teste** das user stories:
 
-**Ordering Strategy**:
-- TDD order: Tests before implementation 
-- Dependency order: Models before services before UI
-- Mark [P] for parallel execution (independent files)
+   - Cada story → cenário de teste de integração
+   - Teste de quickstart = passos de validação da story
 
-**Estimated Output**: 25-30 numbered, ordered tasks in tasks.md
+5. **Atualizar o arquivo do agente incrementalmente** (operação O(1)):
+   - Rodar `/scripts/bash/update-agent-context.sh cursor` para seu assistente de IA
+   - Se existir: Adicionar apenas tecnologias NOVAS do plano atual
+   - Preservar adições manuais entre marcadores
+   - Atualizar mudanças recentes (manter as últimas 3)
+   - Manter abaixo de 150 linhas para eficiência de tokens
+   - Gravar na raiz do repositório
 
-**IMPORTANT**: This phase is executed by the /tasks command, NOT by /plan
+**Saída**: data-model.md, /contracts/\*, testes falhando, quickstart.md, arquivo específico do agente
 
-## Phase 3+: Future Implementation
-*These phases are beyond the scope of the /plan command*
+## Fase 2: Abordagem de Planejamento de Tarefas
 
-**Phase 3**: Task execution (/tasks command creates tasks.md)  
-**Phase 4**: Implementation (execute tasks.md following constitutional principles)  
-**Phase 5**: Validation (run tests, execute quickstart.md, performance validation)
+_Esta seção descreve o que o comando /tasks fará - NÃO executar durante /plan_
 
-## Complexity Tracking
-*Fill ONLY if Constitution Check has violations that must be justified*
+**Estratégia de Geração de Tarefas**:
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+- Carregar `/templates/tasks-template.md` como base
+- Gerar tarefas a partir dos documentos de design da Fase 1 (contratos, data model, quickstart)
+- Cada contrato → tarefa de teste de contrato [P]
+- Cada entidade → tarefa de criação de modelo [P]
+- Cada user story → tarefa de teste de integração
+- Tarefas de implementação para fazer os testes passarem
 
+**Estratégia de Ordenação**:
 
-## Progress Tracking
-*This checklist is updated during execution flow*
+- Ordem TDD: Testes antes da implementação
+- Ordem de dependências: Modelos antes de serviços antes da UI
+- Marcar [P] para execução paralela (arquivos independentes)
 
-**Phase Status**:
-- [ ] Phase 0: Research complete (/plan command)
-- [ ] Phase 1: Design complete (/plan command)
-- [ ] Phase 2: Task planning complete (/plan command - describe approach only)
-- [ ] Phase 3: Tasks generated (/tasks command)
-- [ ] Phase 4: Implementation complete
-- [ ] Phase 5: Validation passed
+**Saída Estimada**: 25-30 tarefas numeradas e ordenadas em tasks.md
 
-**Gate Status**:
-- [ ] Initial Constitution Check: PASS
-- [ ] Post-Design Constitution Check: PASS
-- [ ] All NEEDS CLARIFICATION resolved
-- [ ] Complexity deviations documented
+**IMPORTANTE**: Esta fase é executada pelo comando /tasks, NÃO pelo /plan
+
+## Fase 3+: Implementação Futura
+
+_Estas fases estão além do escopo do comando /plan_
+
+**Fase 3**: Execução das tarefas (comando /tasks cria o tasks.md)  
+**Fase 4**: Implementação (executar o tasks.md seguindo os princípios da constituição)  
+**Fase 5**: Validação (rodar testes, executar o quickstart.md, validação de performance)
+
+## Rastreamento de Complexidade
+
+_Preencher APENAS se a Verificação da Constituição tiver violações que precisem ser justificadas_
+
+| Violação                 | Por que é necessário  | Alternativa mais simples rejeitada porque    |
+| ------------------------ | --------------------- | -------------------------------------------- |
+| [ex.: 4º projeto]        | [necessidade atual]   | [por que 3 projetos são insuficientes]       |
+| [ex.: Padrão Repository] | [problema específico] | [por que acesso direto ao DB é insuficiente] |
+
+## Rastreamento de Progresso
+
+_Este checklist é atualizado durante o fluxo de execução_
+
+**Status das Fases**:
+
+- [ ] Fase 0: Pesquisa concluída (comando /plan)
+- [ ] Fase 1: Design concluído (comando /plan)
+- [ ] Fase 2: Planejamento de tarefas concluído (comando /plan - apenas descrever abordagem)
+- [ ] Fase 3: Tarefas geradas (comando /tasks)
+- [ ] Fase 4: Implementação concluída
+- [ ] Fase 5: Validação aprovada
+
+**Status dos Gates**:
+
+- [ ] Verificação Inicial da Constituição: PASS
+- [ ] Verificação Pós-Design da Constituição: PASS
+- [ ] Todas as NEEDS CLARIFICATION resolvidas
+- [ ] Desvios de complexidade documentados
 
 ---
-*Based on Constitution v2.1.1 - See `/memory/constitution.md`*
+
+_Baseado na Constituição v2.1.1 - Veja `/memory/constitution.md`_

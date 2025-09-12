@@ -1,58 +1,62 @@
----
-description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
----
+## description: Gerar um tasks.md acionável, ordenado por dependências, para a feature com base nos artefatos de design disponíveis.
 
-Given the context provided as an argument, do this:
+Dado o contexto fornecido como argumento, faça o seguinte:
 
-1. Run `.specify/scripts/bash/check-task-prerequisites.sh --json` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
-2. Load and analyze available design documents:
-   - Always read plan.md for tech stack and libraries
-   - IF EXISTS: Read data-model.md for entities
-   - IF EXISTS: Read contracts/ for API endpoints
-   - IF EXISTS: Read research.md for technical decisions
-   - IF EXISTS: Read quickstart.md for test scenarios
+1. Execute `.specify/scripts/bash/check-task-prerequisites.sh --json` a partir da raiz do repositório e analise FEATURE_DIR e a lista AVAILABLE_DOCS. Todos os caminhos devem ser absolutos.
+2. Carregue e analise os documentos de design disponíveis:
 
-   Note: Not all projects have all documents. For example:
-   - CLI tools might not have contracts/
-   - Simple libraries might not need data-model.md
-   - Generate tasks based on what's available
+   - Leia sempre o plan.md para stack e bibliotecas
+   - SE EXISTIR: Leia data-model.md para entidades
+   - SE EXISTIR: Leia contracts/ para endpoints de API
+   - SE EXISTIR: Leia research.md para decisões técnicas
+   - SE EXISTIR: Leia quickstart.md para cenários de teste
 
-3. Generate tasks following the template:
-   - Use `.specify/templates/tasks-template.md` as the base
-   - Replace example tasks with actual tasks based on:
-     * **Setup tasks**: Project init, dependencies, linting
-     * **Test tasks [P]**: One per contract, one per integration scenario
-     * **Core tasks**: One per entity, service, CLI command, endpoint
-     * **Integration tasks**: DB connections, middleware, logging
-     * **Polish tasks [P]**: Unit tests, performance, docs
+   Observação: Nem todos os projetos têm todos os documentos. Por exemplo:
 
-4. Task generation rules:
-   - Each contract file → contract test task marked [P]
-   - Each entity in data-model → model creation task marked [P]
-   - Each endpoint → implementation task (not parallel if shared files)
-   - Each user story → integration test marked [P]
-   - Different files = can be parallel [P]
-   - Same file = sequential (no [P])
+   - Ferramentas de CLI podem não ter contracts/
+   - Bibliotecas simples podem não precisar de data-model.md
+   - Gere tarefas com base no que estiver disponível
 
-5. Order tasks by dependencies:
-   - Setup before everything
-   - Tests before implementation (TDD)
-   - Models before services
-   - Services before endpoints
-   - Core before integration
-   - Everything before polish
+3. Gere as tarefas seguindo o template:
 
-6. Include parallel execution examples:
-   - Group [P] tasks that can run together
-   - Show actual Task agent commands
+   - Use `.specify/templates/tasks-template.md` como base
+   - Substitua as tarefas de exemplo por tarefas reais com base em:
+     - **Tarefas de Setup**: Início do projeto, dependências, linting
+     - **Tarefas de Teste [P]**: Uma por contrato, uma por cenário de integração
+     - **Tarefas Core**: Uma por entidade, serviço, comando de CLI, endpoint
+     - **Tarefas de Integração**: Conexões de BD, middleware, logging
+     - **Tarefas de Polimento [P]**: Testes unitários, performance, docs
 
-7. Create FEATURE_DIR/tasks.md with:
-   - Correct feature name from implementation plan
-   - Numbered tasks (T001, T002, etc.)
-   - Clear file paths for each task
-   - Dependency notes
-   - Parallel execution guidance
+4. Regras de geração de tarefas:
 
-Context for task generation: $ARGUMENTS
+   - Cada arquivo de contrato → tarefa de teste de contrato marcada [P]
+   - Cada entidade em data-model → tarefa de criação de modelo marcada [P]
+   - Cada endpoint → tarefa de implementação (não paralela se houver arquivos compartilhados)
+   - Cada user story → teste de integração marcado [P]
+   - Arquivos diferentes = pode ser paralelo [P]
+   - Mesmo arquivo = sequencial (sem [P])
 
-The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without additional context.
+5. Ordene as tarefas por dependências:
+
+   - Setup antes de tudo
+   - Testes antes da implementação (TDD)
+   - Modelos antes de serviços
+   - Serviços antes de endpoints
+   - Core antes de integração
+   - Tudo antes do polimento
+
+6. Inclua exemplos de execução em paralelo:
+
+   - Agrupe tarefas [P] que podem rodar juntas
+   - Mostre comandos reais do agente Task
+
+7. Crie FEATURE_DIR/tasks.md com:
+   - Nome correto da feature conforme o plano de implementação
+   - Tarefas numeradas (T001, T002, etc.)
+   - Caminhos de arquivo claros para cada tarefa
+   - Notas de dependência
+   - Orientação para execução paralela
+
+Contexto para geração das tarefas: $ARGUMENTS
+
+O tasks.md deve ser imediatamente executável — cada tarefa precisa ser específica o suficiente para que um LLM a complete sem contexto adicional.
