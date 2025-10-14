@@ -1,131 +1,115 @@
-# Especificação de Funcionalidade: [FEATURE NAME]
+# Especificação de Funcionalidade: [NOME DA FUNCIONALIDADE]
 
-**Branch de Funcionalidade**: `[###-feature-name]`  
-**Criado**: [DATE]  
+**Branch da Funcionalidade**: `[###-nome-funcionalidade]`  
+**Criado**: [DATA]  
 **Status**: Rascunho  
 **Entrada**: Descrição do usuário: "$ARGUMENTS"
 
-## Fluxo de Execução (principal)
+## Cenários de Usuário e Testes _(obrigatório)_
 
-```
-1. Analise descrição do usuário da Entrada
-   → Se vazia: ERRO "Nenhuma descrição de funcionalidade fornecida"
-2. Extraia conceitos-chave da descrição
-   → Identifique: atores, ações, dados, restrições
-3. Para cada aspecto não claro:
-   → Marque com [PRECISA CLARIFICAÇÃO: pergunta específica]
-4. Preencha seção Cenários de Usuário e Teste
-   → Se nenhum fluxo de usuário claro: ERRO "Não é possível determinar cenários de usuário"
-5. Gere Requisitos Funcionais
-   → Cada requisito deve ser testável
-   → Marque requisitos ambíguos
-6. Identifique Entidades-Chave (se dados envolvidos)
-7. Execute Lista de Verificação de Revisão
-   → Se qualquer [PRECISA CLARIFICAÇÃO]: AVISO "Especificação tem incertezas"
-   → Se detalhes de implementação encontrados: ERRO "Remova detalhes técnicos"
-8. Retorne: SUCESSO (especificação pronta para planejamento)
-```
+<!--
+  IMPORTANTE: Histórias de usuário devem ser PRIORIZADAS como jornadas de usuário ordenadas por importância.
+  Cada história de usuário/jornada deve ser TESTÁVEL INDEPENDENTEMENTE - significando que se você implementar apenas UMA delas,
+  você ainda deve ter um MVP (Produto Mínimo Viável) viável que entrega valor.
 
----
+  Atribua prioridades (P1, P2, P3, etc.) a cada história, onde P1 é a mais crítica.
+  Pense em cada história como uma fatia autônoma de funcionalidade que pode ser:
+  - Desenvolvida independentemente
+  - Testada independentemente
+  - Implantada independentemente
+  - Demonstrada aos usuários independentemente
+-->
 
-## ⚡ Diretrizes Rápidas
+### História de Usuário 1 - [Título Breve] (Prioridade: P1)
 
-- ✅ Foque no QUE os usuários precisam e POR QUÊ
-- ❌ Evite COMO implementar (sem stack tecnológico, APIs, estrutura de código)
-- 👥 Escrito para stakeholders de negócio, não desenvolvedores
+[Descreva esta jornada de usuário em linguagem simples]
 
-### Requisitos de Seção
+**Por que esta prioridade**: [Explique o valor e por que tem este nível de prioridade]
 
-- **Seções obrigatórias**: Devem ser completadas para toda funcionalidade
-- **Seções opcionais**: Inclua apenas quando relevante para a funcionalidade
-- Quando uma seção não se aplica, remova-a completamente (não deixe como "N/A")
+**Teste Independente**: [Descreva como isso pode ser testado independentemente - ex.: "Pode ser totalmente testado por [ação específica] e entrega [valor específico]"]
 
-### Para Geração de IA
-
-Ao criar esta especificação a partir de um prompt do usuário:
-
-1. **Marque todas as ambiguidades**: Use [PRECISA CLARIFICAÇÃO: pergunta específica] para qualquer suposição que você precisaria fazer
-2. **Não adivinhe**: Se o prompt não especificar algo (ex., "sistema de login" sem método de auth), marque-o
-3. **Pense como um testador**: Todo requisito vago deve falhar no item de lista de verificação "testável e não ambíguo"
-4. **Áreas comuns subespecificadas**:
-   - Tipos de usuário e permissões
-   - Políticas de retenção/exclusão de dados
-   - Alvos de performance e escala
-   - Comportamentos de tratamento de erro
-   - Requisitos de integração
-   - Necessidades de segurança/conformidade
-
----
-
-## Cenários de Usuário e Teste _(obrigatório)_
-
-### História Principal do Usuário
-
-[Descreva a jornada principal do usuário em linguagem simples]
-
-### Cenários de Aceitação
+**Cenários de Aceitação**:
 
 1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
 2. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
 
+---
+
+### História de Usuário 2 - [Título Breve] (Prioridade: P2)
+
+[Descreva esta jornada de usuário em linguagem simples]
+
+**Por que esta prioridade**: [Explique o valor e por que tem este nível de prioridade]
+
+**Teste Independente**: [Descreva como isso pode ser testado independentemente]
+
+**Cenários de Aceitação**:
+
+1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
+
+---
+
+### História de Usuário 3 - [Título Breve] (Prioridade: P3)
+
+[Descreva esta jornada de usuário em linguagem simples]
+
+**Por que esta prioridade**: [Explique o valor e por que tem este nível de prioridade]
+
+**Teste Independente**: [Descreva como isso pode ser testado independentemente]
+
+**Cenários de Aceitação**:
+
+1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
+
+---
+
+[Adicione mais histórias de usuário conforme necessário, cada uma com uma prioridade atribuída]
+
 ### Casos Extremos
 
-- O que acontece quando [condição de limite]?
+<!--
+  AÇÃO REQUERIDA: O conteúdo nesta seção representa placeholders.
+  Preencha-os com os casos extremos corretos.
+-->
+
+- O que acontece quando [condição de contorno]?
 - Como o sistema lida com [cenário de erro]?
 
 ## Requisitos _(obrigatório)_
 
+<!--
+  AÇÃO REQUERIDA: O conteúdo nesta seção representa placeholders.
+  Preencha-os com os requisitos funcionais corretos.
+-->
+
 ### Requisitos Funcionais
 
-- **RF-001**: Sistema DEVE [capacidade específica, ex., "permitir que usuários criem contas"]
-- **RF-002**: Sistema DEVE [capacidade específica, ex., "validar endereços de email"]
-- **RF-003**: Usuários DEVEM ser capazes de [interação-chave, ex., "redefinir sua senha"]
-- **RF-004**: Sistema DEVE [requisito de dados, ex., "persistir preferências do usuário"]
-- **RF-005**: Sistema DEVE [comportamento, ex., "registrar todos os eventos de segurança"]
+- **FR-001**: Sistema DEVE [capacidade específica, ex.: "permitir que usuários criem contas"]
+- **FR-002**: Sistema DEVE [capacidade específica, ex.: "validar endereços de email"]
+- **FR-003**: Usuários DEVEM ser capazes de [interação chave, ex.: "redefinir sua senha"]
+- **FR-004**: Sistema DEVE [requisito de dados, ex.: "persistir preferências do usuário"]
+- **FR-005**: Sistema DEVE [comportamento, ex.: "registrar todos os eventos de segurança"]
 
-_Exemplo de marcação de requisitos não claros:_
+_Exemplo de marcação de requisitos pouco claros:_
 
-- **RF-006**: Sistema DEVE autenticar usuários via [PRECISA CLARIFICAÇÃO: método de auth não especificado - email/senha, SSO, OAuth?]
-- **RF-007**: Sistema DEVE reter dados do usuário por [PRECISA CLARIFICAÇÃO: período de retenção não especificado]
+- **FR-006**: Sistema DEVE autenticar usuários via [NECESSITA ESCLARECIMENTO: método de autenticação não especificado - email/senha, SSO, OAuth?]
+- **FR-007**: Sistema DEVE reter dados do usuário por [NECESSITA ESCLARECIMENTO: período de retenção não especificado]
 
-### Entidades-Chave _(inclua se funcionalidade envolve dados)_
+### Entidades Principais _(inclua se funcionalidade envolve dados)_
 
-- **[Entidade 1]**: [O que representa, atributos-chave sem implementação]
+- **[Entidade 1]**: [O que representa, atributos chave sem implementação]
 - **[Entidade 2]**: [O que representa, relacionamentos com outras entidades]
 
----
+## Critérios de Sucesso _(obrigatório)_
 
-## Lista de Verificação de Revisão e Aceitação
+<!--
+  AÇÃO REQUERIDA: Defina critérios de sucesso mensuráveis.
+  Estes devem ser independentes de tecnologia e mensuráveis.
+-->
 
-_PORTÃO: Verificações automatizadas executadas durante execução main()_
+### Resultados Mensuráveis
 
-### Qualidade do Conteúdo
-
-- [ ] Nenhum detalhe de implementação (linguagens, frameworks, APIs)
-- [ ] Focado no valor do usuário e necessidades de negócio
-- [ ] Escrito para stakeholders não-técnicos
-- [ ] Todas as seções obrigatórias completadas
-
-### Completude dos Requisitos
-
-- [ ] Nenhum marcador [PRECISA CLARIFICAÇÃO] permanece
-- [ ] Requisitos são testáveis e não ambíguos
-- [ ] Critérios de sucesso são mensuráveis
-- [ ] Escopo é claramente delimitado
-- [ ] Dependências e suposições identificadas
-
----
-
-## Status de Execução
-
-_Atualizado por main() durante processamento_
-
-- [ ] Descrição do usuário analisada
-- [ ] Conceitos-chave extraídos
-- [ ] Ambiguidades marcadas
-- [ ] Cenários de usuário definidos
-- [ ] Requisitos gerados
-- [ ] Entidades identificadas
-- [ ] Lista de verificação de revisão passou
-
----
+- **SC-001**: [Métrica mensurável, ex.: "Usuários podem completar criação de conta em menos de 2 minutos"]
+- **SC-002**: [Métrica mensurável, ex.: "Sistema lida com 1000 usuários simultâneos sem degradação"]
+- **SC-003**: [Métrica de satisfação do usuário, ex.: "90% dos usuários completam tarefa primária na primeira tentativa"]
+- **SC-004**: [Métrica de negócio, ex.: "Reduzir tickets de suporte relacionados a [X] em 50%"]

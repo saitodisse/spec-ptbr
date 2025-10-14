@@ -1,6 +1,6 @@
-# Diretrizes de Desenvolvimento [PROJECT NAME]
+# Diretrizes de Desenvolvimento [NOME DO PROJETO]
 
-Auto-gerado a partir de todos os planos de funcionalidade. Última atualização: [DATE]
+Auto-gerado de todos os planos de funcionalidades. Última atualização: [DATA]
 
 ## Tecnologias Ativas
 
